@@ -6,13 +6,13 @@ type: Concept
 order: 3
 ---
 
-## 상황 (Context)
+## Context
 
 우리 팀 **어서오소**는 이화대동제 부스 메뉴를 찾고, 사고, 후기를 남기는 마켓 사이트 **Ewha Market**을 만들고 있다. 나는 그중 **회원 관리**(회원가입, 로그인/로그아웃, 마이페이지)를 맡았다.
 
 아이디와 비밀번호가 맞는지 확인하는 기능은 금방 만들었다. 그런데 로그인에 성공해서 메인 페이지로 넘어가면, 메인 페이지는 **방금 누가 로그인했는지 어떻게 알까?** 페이지를 옮길 때마다 아이디와 비밀번호를 다시 보낼 수는 없었다. 수업에서 `session`을 쓰면 된다고 배웠지만 처음에는 "서버 어딘가에 저장되는 변수" 정도로만 알고 있었다. 이 글에서는 직접 구현하면서 알게 된 session의 동작 방식을 정리한다.
 
-## 목표 (Goal)
+## Goal
 
 - 로그인한 사용자를 다른 페이지에서도 알아보기
 - 로그인한 사람만 마이페이지, 상품 등록, 리뷰 작성에 들어갈 수 있게 하기
@@ -125,7 +125,7 @@ def logout():
 
 `session.clear()`로 session에 든 값을 모두 지우면, 다음 요청부터는 `'id' not in session`이 참이 되어 로그아웃 상태가 된다.
 
-## 결과 (Result)
+## Result
 
 ![로그인 전 헤더]({{ "/assets/images/session-header-before.png" | relative_url }})
 
@@ -143,14 +143,14 @@ def logout():
 
 로그인하지 않고 마이페이지 주소를 직접 입력하면 "로그인이 필요합니다." 메시지와 함께 로그인 페이지로 이동한다.
 
-## 배운 점 (What I learned)
+## What I learned
 
 처음에는 `session['id'] = id_` 한 줄이면 끝나는 기능이라고 생각했는데, 그 뒤에서는 쿠키와 서명, 만료 시간이 함께 움직이고 있었다. 직접 쿠키를 열어 보고 나서야 두 가지를 제대로 이해할 수 있었다.
 
 - session 쿠키는 고칠 수는 없어도 **누구나 읽을 수 있기 때문에** 비밀번호 같은 값은 넣으면 안 된다.
 - 서명을 지켜 주는 것은 `SECRET_KEY` 하나뿐이다. 이 값이 알려지면 누구든 다른 사람인 척하는 쿠키를 만들 수 있으니, 실제 서비스라면 코드에 직접 쓰지 말고 환경변수 등으로 숨겨야 한다.
 
-## 참고자료 (References)
+## References
 
 - [Flask 공식 문서 - Quickstart: Sessions](https://flask.palletsprojects.com/en/stable/quickstart/#sessions)
 - [Flask 공식 문서 - Configuration: SECRET_KEY](https://flask.palletsprojects.com/en/stable/config/#SECRET_KEY)
