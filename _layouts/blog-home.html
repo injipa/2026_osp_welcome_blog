@@ -1,0 +1,80 @@
+---
+layout: default
+---
+{%- assign type_order = "Concept,Explanation,Guide,Debugging" | split: "," -%}
+{%- assign recent_posts = site.posts | sort: "order" -%}
+
+<style>
+  body:has(.bh) .wrapper { max-width: 1100px; }
+  .bh { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; margin-top: 8px; }
+  .bh-side { position: sticky; top: 24px; }
+  .bh-avatar { width: 96px; height: 96px; border-radius: 50%; background: #146b46; color: #fff;
+               display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;
+               line-height: 1.2; text-align: center; margin-bottom: 14px; }
+  .bh-team { font-size: 22px; font-weight: 700; margin: 0 0 4px; }
+  .bh-desc { color: #666; font-size: 14px; margin: 0 0 16px; }
+  .bh-links { list-style: none; margin: 0 0 24px; padding: 0; font-size: 14px; }
+  .bh-links li { margin: 4px 0; }
+  .bh-type { margin: 0 0 18px; }
+  .bh-type h3 { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: #146b46;
+                border-bottom: 1px solid #e3e8e3; padding-bottom: 6px; margin: 0 0 8px; }
+  .bh-type h3 span { color: #999; font-weight: 400; }
+  .bh-type ul { list-style: none; margin: 0; padding: 0; }
+  .bh-type li { font-size: 14px; margin: 6px 0; line-height: 1.4; }
+  .bh-main h2 { font-size: 20px; border-bottom: 2px solid #e3e8e3; padding-bottom: 10px; margin: 0 0 8px; }
+  .bh-post { padding: 22px 0; border-bottom: 1px solid #eee; }
+  .bh-post h3 { margin: 0 0 6px; font-size: 22px; line-height: 1.35; }
+  .bh-post h3 a { text-decoration: underline; text-underline-offset: 4px; }
+  .bh-meta { font-size: 13px; color: #888; margin: 0 0 8px; }
+  .bh-badge { display: inline-block; background: #eaf3ed; color: #146b46; border-radius: 999px;
+              padding: 1px 10px; font-size: 12px; font-weight: 600; margin-right: 6px; }
+  .bh-excerpt { color: #444; font-size: 15px; margin: 0; }
+  @media (max-width: 800px) {
+    .bh { grid-template-columns: 1fr; gap: 24px; }
+    .bh-side { position: static; }
+  }
+</style>
+
+<div class="bh">
+  <aside class="bh-side">
+    <div class="bh-avatar">어서<br>오소</div>
+    <p class="bh-team">{{ site.title }}</p>
+    <p class="bh-desc">{{ site.description }}</p>
+    <ul class="bh-links">
+      <li>📦 <a href="https://github.com/devleeji/2026_osp_project_welcome">프로젝트 저장소</a></li>
+      <li>👥 <a href="{{ '/about/' | relative_url }}">팀 소개</a></li>
+      <li>🎓 2026 오픈소스소프트웨어플랫폼</li>
+    </ul>
+
+    {%- for t in type_order -%}
+      {%- assign typed = site.posts | where: "type", t | sort: "order" -%}
+      {%- if typed.size > 0 %}
+    <div class="bh-type">
+      <h3>{{ t }} <span>({{ typed.size }})</span></h3>
+      <ul>
+        {%- for post in typed %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+      {%- endif -%}
+    {%- endfor %}
+  </aside>
+
+  <section class="bh-main">
+    {{ content }}
+    <h2>최근 포스트</h2>
+    {%- for post in recent_posts %}
+    <article class="bh-post">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <p class="bh-meta">
+        <span class="bh-badge">{{ post.type }}</span>
+        {{ post.date | date: "%Y.%m.%d" }} · {{ post.author }}
+      </p>
+      {%- assign ex = post.content | strip_html | strip_newlines | remove_first: "들어가며" | strip | truncate: 140 -%}
+      {%- if post.description %}{% assign ex = post.description %}{% endif %}
+      <p class="bh-excerpt">{{ ex }}</p>
+    </article>
+    {%- endfor %}
+  </section>
+</div>
