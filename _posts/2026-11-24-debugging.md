@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Debugging: pyrebase 경로 초기화 동작으로 인한 Firebase DB 전체 덮어쓰기 버그 해결"
+title: "pyrebase 경로 초기화 동작으로 인한 Firebase DB 전체 덮어쓰기 버그 해결"
 author: 황보희
 type: Debugging
 order: 4
