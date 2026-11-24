@@ -15,8 +15,10 @@ order: 4
 이상해서 Firebase 콘솔에 들어가 보았습니다. 그런데 이때까지의 데이터가 전부 사라지고, 아래 한 줄만 덩그러니 남아 있었습니다.
 
 ```text
-> `[https://ewha-market-...-rtdb.firebasedatabase.app/](https://ewha-market-...-rtdb.firebasedatabase.app/): true`
+https://ewha-market-....firebasedatabase.app/: true
 ```
+
+---
 
 ## Problem or goal
 
