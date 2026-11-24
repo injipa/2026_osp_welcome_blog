@@ -1,0 +1,30 @@
+# ===== 어서오소 팀 기술 블로그 설정 =====
+title: 어서오소 Tech Blog
+description: 이화대동제 축제 부스 판매 웹 'Ewha Market'을 만들며 배운 것들
+lang: ko-KR
+timezone: Asia/Seoul
+
+# 레포 이름이 바뀌면 baseurl도 같이 바꿔 주세요 (앞에 / 필수, 뒤에 / 없음)
+url: "https://injipa.github.io"
+baseurl: "/2026_osp_welcome_blog"
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 날짜가 오늘보다 뒤여도 글이 보이게
+future: true
+
+# 글 주소: /posts/파일이름/
+permalink: /posts/:title/
+
+header_pages:
+  - about.md
+
+minima:
+  social_links:
+    github: devleeji/2026_osp_project_welcome
+
+exclude:
+  - README.md
