@@ -15,12 +15,8 @@ order: 4
 이상해서 Firebase 콘솔에 들어가 보았습니다. 그런데 이때까지의 데이터가 전부 사라지고, 아래 한 줄만 덩그러니 남아 있었습니다.
 
 ```text
-[https://ewha-market-....firebasedatabase.app/](https://ewha-market-....firebasedatabase.app/): true
+> `[https://ewha-market-...-rtdb.firebasedatabase.app/](https://ewha-market-...-rtdb.firebasedatabase.app/): true`
 ```
-
-팀 전체가 공용으로 쓰던 데이터베이스가 `true`라는 값 하나로 통째로 덮어써진 것입니다.
-
----
 
 ## Problem or goal
 
